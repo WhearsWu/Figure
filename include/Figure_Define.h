@@ -67,6 +67,7 @@ typedef struct
 }PictreType;
 
 extern char image[PictreHeight][PictreWidth];
+extern char tempimage[PictreHeight][PictreWidth];
 extern char imag_Minesweep[PictreHeight][PictreWidth];
 
 void Figure_StructInit_LineType(LineType *line);//清空结构体

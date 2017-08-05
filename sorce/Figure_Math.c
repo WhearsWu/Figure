@@ -42,7 +42,7 @@ unsigned short int Figure_Roundf (float x)
 }
 float Figure_Sobel(unsigned short int x,unsigned short int y,unsigned short int *mag)
 {	
-	unsigned short int sobel_x = 0,sobel_y = 0;
+	short int sobel_x = 0,sobel_y = 0;
 		
 	//	|-1	0 	+1|
 	//	|-2	0 	+2|
@@ -52,9 +52,9 @@ float Figure_Sobel(unsigned short int x,unsigned short int y,unsigned short int 
 	//sobel_x += image[y+1][x]*0;
 	sobel_x += image[y+1][x-1]*-1;
 	
-	sobel_x += image[y][x+1]	*2;
-	//sobel_x += image[y][x]	*0;
-	sobel_x += image[y][x-1]	*-2;
+	sobel_x += image[y][x+1]*2;
+	//sobel_x += image[y][x]*0;
+	sobel_x += image[y][x-1]*-2;
 	
 	sobel_x += image[y-1][x+1]*1;
 	//sobel_x += image[y-1][x]*0;
@@ -65,7 +65,7 @@ float Figure_Sobel(unsigned short int x,unsigned short int y,unsigned short int 
 	//	|0	0	0 |
 	//	|-1	-2	-1|  y
 	sobel_y += image[y+1][x+1]*1;
-	sobel_y += image[y+1][x]	*2;
+	sobel_y += image[y+1][x]*2;
 	sobel_y += image[y+1][x-1]*1;
 	
 	//sobel_y += image[y][x+1]*0;
@@ -73,9 +73,9 @@ float Figure_Sobel(unsigned short int x,unsigned short int y,unsigned short int 
 	//sobel_y += image[y][x-1]*0;
 	
 	sobel_y += image[y-1][x+1]*-1;
-	sobel_y += image[y-1][x]	*-2;
+	sobel_y += image[y-1][x]*-2;
 	sobel_y += image[y-1][x-1]*-1;
 	
-	*mag = sqrt(sobel_x*sobel_x+sobel_y*sobel_y);
+	*mag = Figure_Roundf(sqrt((sobel_x*sobel_x)+(sobel_y*sobel_y)));
 	return atan2f(sobel_y,sobel_x);
 }

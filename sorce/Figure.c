@@ -1,9 +1,18 @@
 #include "Figure.h"
-
+void Figure_Clean()
+{
+	unsigned short int x,y;
+	for(y = 0;y!=PictreHeight;y++)
+	{
+		for(x = 0;x!=PictreWidth;x++)
+		{
+			image[y][x] = 0;
+		}
+	}
+}
 void Figure_edge()
 {
 	unsigned short int x,y;
-	char tempimage[PictreHeight][PictreWidth];
 	unsigned short int mag;
 	
 	for(y = 1;y!=PictreHeight-1;y++)
@@ -11,13 +20,19 @@ void Figure_edge()
 		for(x = 1;x!=PictreWidth-1;x++)
 		{
  			Figure_Sobel(x,y,&mag);
-			if(mag > 1)
+			if(mag > 2)
 				tempimage[y][x]=1;
+			else
+				tempimage[y][x]=0;
 		}
 	}
 	for(y = 0;y!=PictreHeight;y++)
+	{
 		for(x = 0;x!=PictreWidth;x++)
+		{
 			image[y][x] = tempimage[y][x];
+		}
+	}
 }
 
 void Figure_RectangularToDescartes(PointListType blackp,DEPointListType *deblackp)
@@ -143,7 +158,10 @@ void Figure_FindSingleCircle(PointType *output)
 				add_x+=x;
 				add_y+=y;
 				counter++;
+				tempimage[y][x] = 1;
 			}
+			else
+				tempimage[y][x] = 0;
 		}
 	}
 	output->x=add_x/counter;

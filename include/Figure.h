@@ -14,4 +14,5 @@ void Figure_DescartesToRectangular(DELineType *DEline,RTLineType *line);//把霍夫
 void Figure_Corrosion(unsigned short int effects);//将画面腐蚀，effects:强度
 void Figure_FindCircles(PointListType *output);//寻找多个圆
 void Figure_FindSingleCircle(PointType *output);//寻找单个圆
+void Figure_Clean(void);
 #endif

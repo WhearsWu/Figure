@@ -1,5 +1,6 @@
 #include "Figure_Define.h"
 char image[PictreHeight][PictreWidth];
+char tempimage[PictreHeight][PictreWidth];
 char imag_Minesweep[PictreHeight][PictreWidth];
 void Figure_StuctInit_PictreType(PictreType *Pictre)
 {
