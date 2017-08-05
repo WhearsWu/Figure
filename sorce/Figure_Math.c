@@ -79,3 +79,19 @@ float Figure_Sobel(unsigned short int x,unsigned short int y,unsigned short int 
 	*mag = Figure_Roundf(sqrt((sobel_x*sobel_x)+(sobel_y*sobel_y)));
 	return atan2f(sobel_y,sobel_x);
 }
+short int Figure_Convolution(unsigned short int x,unsigned short int y,short int kernel[3][3])
+{
+	short int add = 0;
+	add += image[y+1][x+1]*kernel[2][2];
+	add += image[y+1][x]*kernel[2][1];
+	add += image[y+1][x-1]*kernel[2][0];
+	
+	add += image[y][x+1]*kernel[1][2];
+	add += image[y][x]*kernel[1][1];
+	add += image[y][x-1]*kernel[1][0];
+	
+	add += image[y-1][x+1]*kernel[1][2];
+	add += image[y-1][x]*kernel[1][1];
+	add += image[y-1][x-1]*kernel[1][0];
+	return add;
+}
